@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true
 
   with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '半角英字と数字を含めて設定してください' } do
-    validates :encrypted_password
+    validates :password
   end
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: '全角（漢字・ひらがな・カタカナ）を使用してください' } do
