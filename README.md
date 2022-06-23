@@ -21,18 +21,17 @@
 
 ## items テーブル
 
-| Column           | Type       | Options    |
-|------            |----        |-------     |
-| image            |            | null:false |
-| product_name     | string     | null:false |
-| description      | text       | null:false |
-| category_id      | integer    | null:false, active_hash |
-| condition_id     | integer    | null:false, active_hash |
-| delivery_type_id | integer    | null:false, active_hash |
-| delivery_area_id | integer    | null:false, active_hash |
-| delivery_day_id  | integer    | null:false, active_hash |
-| price            | integer    | null:false |
-| user             | references | null:false, foreign_key:true |
+| Column                 | Type       | Options    |
+|------                  |----        |-------     |
+| product_name           | string     | null:false |
+| description            | text       | null:false |
+| category_id            | integer    | null:false |
+| condition_id           | integer    | null:false |
+| delivery_charge_id     | integer    | null:false |
+| prefecture_id          | integer    | null:false |
+| days_until_delivery_id | integer    | null:false |
+| price                  | integer    | null:false |
+| user                   | references | null:false, foreign_key:true |
 
 ### Association
 - belongs_to :user
@@ -41,9 +40,9 @@
 - has_many :likes
 - belongs_to :category
 - belongs_to :condition
-- belongs_to :delivery_type
-- belongs_to :delivery_area
-- belongs_to :delivery_day
+- belongs_to :delivery_charge
+- belongs_to :prefecture
+- belongs_to :days_until_delivery
 
 ## purchases テーブル
 | Column        | Type       | Options    |
@@ -83,14 +82,13 @@
 
 | Column                | Type       | Options    |
 |------                 |----        |-------     |
-| postcode              | integer    | null:false |
-| address_prefecture_id | integer    | null:false, active_hash |
-| address_city          | string     | null:false |
-| address_street        | string     | null:false |
+| postcode              | string     | null:false |
+| prefecture_id         | integer    | null:false |
+| city                  | string     | null:false |
+| street                | string     | null:false |
 | address_other         | string     |            |
 | phone_num             | string     | null:false |
 | purchase              | reference  | null:false |
 
 ### Association
 - belongs_to :purchase
-- belongs_to :address_prefecture
