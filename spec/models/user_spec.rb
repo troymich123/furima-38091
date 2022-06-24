@@ -102,7 +102,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name jp には全角（カタカナ）を使用してください")
       end
-
     end
   end
 end
