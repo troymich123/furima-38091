@@ -8,10 +8,14 @@ class Item < ApplicationRecord
   belongs_to :days_until_delivery
   has_one_attached :image
 
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_charge_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :days_until_delivery_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :image, presence: true
+  validates :product_name, presence: true
+  validates :description, presence: true
+  validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :condition_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :days_until_delivery_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :price, presence: true, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
 
 end
