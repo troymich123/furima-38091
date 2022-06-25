@@ -9,8 +9,8 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :image, presence: true
-  validates :product_name, presence: true, length: { maximum: 80 }
-  validates :description, presence: true, length: { maximum: 2000 }
+  validates :product_name, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
   with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
