@@ -27,12 +27,12 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailに@が含まれていない場合登録できない' do
         @user.email = 'testtest'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
@@ -74,45 +74,45 @@ RSpec.describe User, type: :model do
         @user.password = '1234a'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordが英字のみでは登録できない' do
         @user.password = 'abcdef'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'passwordに全角文字が含まれていては登録できない' do
         @user.password = '　' + Faker::Internet.password(min_length: 5)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'passwordが数字のみでは登録できない' do
         @user.password = '123456'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it 'お名前(姓)が全角（漢字・ひらがな・カタカナ）を使用していなければ登録できない' do
         @user.last_name = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name には全角（漢字・ひらがな・カタカナ）を使用してください")
+        expect(@user.errors.full_messages).to include('Last name には全角（漢字・ひらがな・カタカナ）を使用してください')
       end
       it 'お名前(名)が全角（漢字・ひらがな・カタカナ）を使用していなければ登録できない' do
         @user.first_name = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name には全角（漢字・ひらがな・カタカナ）を使用してください")
+        expect(@user.errors.full_messages).to include('First name には全角（漢字・ひらがな・カタカナ）を使用してください')
       end
       it 'お名前カナ(姓)が全角（カタカナ）を使用していなければ登録できない' do
         @user.last_name_jp = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name jp には全角（カタカナ）を使用してください")
+        expect(@user.errors.full_messages).to include('Last name jp には全角（カタカナ）を使用してください')
       end
       it 'お名前カナ(名)が全角（カタカナ）を使用していなければ登録できない' do
         @user.first_name_jp = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name jp には全角（カタカナ）を使用してください")
+        expect(@user.errors.full_messages).to include('First name jp には全角（カタカナ）を使用してください')
       end
     end
   end

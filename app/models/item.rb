@@ -18,6 +18,6 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :days_until_delivery_id
   end
-  validates :price, presence: true, numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999}
-
+  validates :price, presence: true,
+                    numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
