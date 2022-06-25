@@ -9,13 +9,15 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :image, presence: true
-  validates :product_name, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :condition_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :delivery_charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :days_until_delivery_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
+  validates :product_name, presence: true, length: { maximum: 80 }
+  validates :description, presence: true, length: { maximum: 2000 }
+  with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :condition_id
+    validates :delivery_charge_id
+    validates :prefecture_id
+    validates :days_until_delivery_id
+  end
+  validates :price, presence: true, numericality: { only_integer: true, allow_blank: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999}
 
 end
