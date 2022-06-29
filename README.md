@@ -89,7 +89,7 @@
 | street                | string     | null:false |
 | address_other         | string     |            |
 | phone_num             | string     | null:false |
-| order                 | reference  | null:false |
+| order                 | reference  | null:false, foreign_key:true |
 
 ### Association
 - belongs_to :order
