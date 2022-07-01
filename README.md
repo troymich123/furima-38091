@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchases
+- has_many :orders
 - has_many :comments
 - has_many :likes
 
@@ -35,7 +35,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 - has_many :comments
 - has_many :likes
 - belongs_to :category
@@ -44,7 +44,7 @@
 - belongs_to :prefecture
 - belongs_to :days_until_delivery
 
-## purchases テーブル
+## orders テーブル
 | Column        | Type       | Options    |
 |------         |----        |-------     |
 | user          | references | null:false, foreign_key:true |
@@ -89,7 +89,7 @@
 | street                | string     | null:false |
 | address_other         | string     |            |
 | phone_num             | string     | null:false |
-| purchase              | reference  | null:false |
+| order                 | reference  | null:false, foreign_key:true |
 
 ### Association
-- belongs_to :purchase
+- belongs_to :order
