@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     @order_shipment = OrderShipment.new
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def create
