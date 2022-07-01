@@ -10,7 +10,7 @@ RSpec.describe OrderShipment, type: :model do
 
   describe '商品購入' do
     context '内容に問題ない場合' do
-      it "postcode, prefecture_id, city, street, phone_num, user_id, item_idがあれば保存できること" do
+      it "postcode, prefecture_id, city, street, phone_num, user_id, item_id, tokenがあれば保存できること" do
         expect(@order_shipment).to be_valid
       end
 
@@ -67,6 +67,12 @@ RSpec.describe OrderShipment, type: :model do
         @order_shipment.item_id = ''
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'tokenが空では登録できないこと' do
+        @order_shipment.token = ''
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
