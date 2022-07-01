@@ -69,6 +69,12 @@ RSpec.describe OrderShipment, type: :model do
         expect(@order_shipment.errors.full_messages).to include("Phone num is invalid. Must be 10 or 11 digits")
       end
 
+      it "phone_numに半角数字以外が含まれている場合は購入できない" do
+        @order_shipment.phone_num = "abcdefghij"
+        @order_shipment.valid?
+        expect(@order_shipment.errors.full_messages).to include("Phone num is invalid. Must be 10 or 11 digits")
+      end
+
       it "user_idが空では購入できないこと" do
         @order_shipment.user_id = ''
         @order_shipment.valid?
